@@ -83,7 +83,8 @@ def should_respond_to_message(message: Message) -> bool:
     # Don't respond to own messages
     if message.guild and message.guild.me and message.author == message.guild.me:
         return False
-    
+    if message.author.bot:
+        return False
     # Don't respond to @everyone mentions
     if message.mention_everyone:
         return False
